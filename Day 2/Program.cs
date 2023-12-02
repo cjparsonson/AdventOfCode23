@@ -26,8 +26,7 @@ foreach (string game in games)
         // Trim leading and trailing spaces
         string trimmedItem = item.Trim();
         // Split into colour and number
-        string[] colourAndNumber = trimmedItem.Split(" ");
-        WriteLine($"Colour: {colourAndNumber[1]} Number: {colourAndNumber[0]}");
+        string[] colourAndNumber = trimmedItem.Split(" ");        
         (string colour, int number) cubeTuple = (colourAndNumber[1], int.Parse(colourAndNumber[0]));
         cubeTuples.Add(cubeTuple);
     }
@@ -36,7 +35,27 @@ foreach (string game in games)
 // Print out cubeTuples
 foreach (var cubeTuple in cubeTuples)
 {
-    WriteLine($"Text: {cubeTuple.Item1} Number: {cubeTuple.Item2}");
+    if (cubeTuple.Item1.Contains("Game"))
+    {
+        WriteLine($"Game: {cubeTuple.Item2}");
+    }
+    else
+    {
+        // Compare colour and number to ControlSet enum
+        if (cubeTuple.Item1 == ControlSet.red.ToString())
+        {
+            WriteLine($"Red: {cubeTuple.Item2} | Controlset: {((int)ControlSet.red)}");
+        }
+        else if (cubeTuple.Item1 == ControlSet.green.ToString())
+        {
+            WriteLine($"Green: {cubeTuple.Item2} | Controlset: {((int)ControlSet.green)}");
+        }
+        else if (cubeTuple.Item1 == ControlSet.blue.ToString())
+        {
+            WriteLine($"Blue: {cubeTuple.Item2} | Controlset: {((int)ControlSet.blue)}");
+        
+        }
+    }
 }
 
 
